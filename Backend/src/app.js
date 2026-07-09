@@ -5,11 +5,17 @@ const User = require("./models/users.model");
 const app = express();
 
 app.use(cors());
+// const path = require("path");
+// app.use(express.static("./public"));
+
+const path = require("path");
+app.use(express.static("./public"));
+
 app.use(express.json());
 
 
 // CREATE
-app.post("/users", async (req, res) => {
+app.post("/api/users", async (req, res) => {
   try {
     const user = await User.create(req.body);
 
@@ -26,7 +32,7 @@ app.post("/users", async (req, res) => {
 
 
 // READ ALL
-app.get("/users", async (req, res) => {
+app.get("/api/users", async (req, res) => {
   try {
     const users = await User.find();
 
@@ -40,7 +46,7 @@ app.get("/users", async (req, res) => {
 
 
 // READ ONE
-app.get("/users/:id", async (req, res) => {
+app.get("/api/users/:id", async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
 
@@ -60,7 +66,7 @@ app.get("/users/:id", async (req, res) => {
 
 
 // UPDATE
-app.put("/users/:id", async (req, res) => {
+app.put("/api/users/:id", async (req, res) => {
   try {
     const user = await User.findByIdAndUpdate(
       req.params.id,
@@ -87,7 +93,7 @@ app.put("/users/:id", async (req, res) => {
 
 
 // DELETE
-app.delete("/users/:id", async (req, res) => {
+app.delete("/api/users/:id", async (req, res) => {
   try {
     const user = await User.findByIdAndDelete(req.params.id);
 
@@ -106,5 +112,15 @@ app.delete("/users/:id", async (req, res) => {
     });
   }
 });
+
+
+
+app.use('*name', (req, res) => {
+  res.sendFile(path.join(__dirname,"..", "/public/index.html"));
+
+})
+
+
+
 
 module.exports = app;

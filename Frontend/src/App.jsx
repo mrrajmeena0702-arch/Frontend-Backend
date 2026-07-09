@@ -20,7 +20,7 @@ export default function App() {
   // ================= GET =================
   const getUsers = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/users");
+      const res = await axios.get("http://localhost:3000/api/users");
       setUsers(res.data);
     } catch (err) {
       console.log(err);
@@ -47,7 +47,7 @@ export default function App() {
       if (editId) {
         // UPDATE
         await axios.put(
-          `http://localhost:3000/users/${editId}`,
+          `http://localhost:3000/api/users/${editId}`,
           formData
         );
         alert("User updated successfully");
@@ -55,7 +55,7 @@ export default function App() {
       } else {
         // CREATE
         await axios.post(
-          "http://localhost:3000/users",
+          "http://localhost:3000/api/users",
           formData
         );
         alert("User created successfully");
@@ -80,7 +80,7 @@ export default function App() {
   // ================= DELETE =================
   const deleteUser = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/users/${id}`);
+      await axios.delete(`http://localhost:3000/api/users/${id}`);
       alert("User deleted successfully");
       getUsers();
     } catch (err) {
