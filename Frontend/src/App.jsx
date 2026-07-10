@@ -20,7 +20,7 @@ export default function App() {
   // ================= GET =================
   const getUsers = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/api/users");
+      const res = await axios.get("https://ui-ux-78lx.onrender.com/api/users");
       setUsers(res.data);
     } catch (err) {
       console.log(err);
@@ -28,7 +28,7 @@ export default function App() {
   };
 
   useEffect(() => {
-    getUsers();
+    // getUsers();
   }, []);
 
   // Input change
@@ -47,7 +47,7 @@ export default function App() {
       if (editId) {
         // UPDATE
         await axios.put(
-          `http://localhost:3000/api/users/${editId}`,
+          `https://ui-ux-78lx.onrender.com/api/users${editId}`,
           formData
         );
         alert("User updated successfully");
@@ -55,7 +55,7 @@ export default function App() {
       } else {
         // CREATE
         await axios.post(
-          "http://localhost:3000/api/users",
+          "https://ui-ux-78lx.onrender.com/api/users",
           formData
         );
         alert("User created successfully");
@@ -80,7 +80,7 @@ export default function App() {
   // ================= DELETE =================
   const deleteUser = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/api/users/${id}`);
+      await axios.delete(`https://ui-ux-78lx.onrender.com/api/users${id}`);
       alert("User deleted successfully");
       getUsers();
     } catch (err) {
@@ -105,7 +105,7 @@ export default function App() {
     <div className="min-h-screen bg-slate-950 p-6">
       <div className="max-w-md mx-auto bg-slate-900 p-8 rounded-2xl shadow-xl">
         <h1 className="text-3xl text-white text-center font-bold">
-          User Form
+          Registration Form
         </h1>
 
         <form onSubmit={handleSubmit} className="space-y-4 mt-6">
